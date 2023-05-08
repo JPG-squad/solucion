@@ -23,48 +23,48 @@ A continuación, se muestra el diagrama relacional de los modelos de la base de 
 
 A continuación, se enumeran todas las funcionalidades que ofrece el Portal de conversaciones:
 
-1. [Iniciar sesión](#1-iniciar-sesión)
-2. [Modificar mi perfil](#2-modificar-mi-perfil)
-3. [Añadir un usuario](#3-añadir-un-usuario)
-4. [Filtrar usuarios](#4-filtrar-usuarios)
-5. [Subir conversación](#5-subir-conversación)
-6. [Autogenerar título y descripción](#6-autogenerar-título-y-descripción)
-7. [Ver transcripción](#7-ver-transcripción)
-8. [Reproducir conversación](#8-reproducir-conversación)
-9. [Preguntas efímeras](#9-preguntas-efímeras)
-10. [Generar ficha de usuario](#10-generar-ficha-de-usuario)
-11. [Ver y modificar ficha de usuario](#11-ver-y-modificar-ficha-de-usuario)
-12. [Grabar conversación](#12-grabar-conversación)
-13. [Buscador](#13-buscador)
-14. [Ver notificaciones](#14-ver-notificaciones)
+1. [Iniciar sesión 🔑](#1-iniciar-sesión)
+2. [Modificar mi perfil 📝](#2-modificar-mi-perfil)
+3. [Añadir un usuario 👤](#3-añadir-un-usuario)
+4. [Filtrar usuarios 🔍](#4-filtrar-usuarios)
+5. [Subir conversación 📤](#5-subir-conversación)
+6. [Autogenerar título y descripción 🤖](#6-autogenerar-título-y-descripción)
+7. [Ver transcripción 📜](#7-ver-transcripción)
+8. [Reproducir conversación 🔊](#8-reproducir-conversación)
+9. [Preguntas efímeras ❓](#9-preguntas-efímeras)
+10. [Generar ficha de usuario 📑](#10-generar-ficha-de-usuario)
+11. [Ver y modificar ficha de usuario 🧐](#11-ver-y-modificar-ficha-de-usuario)
+12. [Grabar conversación 🎙️](#12-grabar-conversación)
+13. [Buscador 🔎](#13-buscador)
+14. [Ver notificaciones 🔔](#14-ver-notificaciones)
 
-### 1. Iniciar sesión 🔑
+### 1. Iniciar sesión
 
-### 2. Modificar mi perfil 📝
+### 2. Modificar mi perfil
 
-### 3. Añadir un usuario 👤
+### 3. Añadir un usuario
 
-### 4. Filtrar usuarios 🔍
+### 4. Filtrar usuarios
 
-### 5. Subir conversación 📤
+### 5. Subir conversación
 
-### 6. Autogenerar título y descripción 🤖
+### 6. Autogenerar título y descripción
 
-### 7. Ver transcripción 📜
+### 7. Ver transcripción
 
-### 8. Reproducir conversación 🔊
+### 8. Reproducir conversación
 
-### 9. Preguntas efímeras ❓
+### 9. Preguntas efímeras
 
-### 10. Generar ficha de usuario 📑
+### 10. Generar ficha de usuario
 
-### 11. Ver y modificar ficha de usuario 🧐
+### 11. Ver y modificar ficha de usuario
 
-### 12. Grabar conversación 🎙️
+### 12. Grabar conversación
 
-### 13. Buscador 🔎
+### 13. Buscador
 
-### 14. Ver notificaciones 🔔
+### 14. Ver notificaciones
 
 ## ⏭️ Trabajo futuro
 
