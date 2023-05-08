@@ -31,11 +31,10 @@ A continuación, se enumeran todas las funcionalidades que ofrece el Portal de c
 6. [Ver transcripción 📜](#6-ver-transcripción)
 7. [Saber más 💬](#7-saber-mas)
 8. [Reproducir conversación 🔊](#8-reproducir-conversación)
-9. [Generar ficha de usuario 📑](#9-generar-ficha-de-usuario)
-10. [Ver y modificar ficha de usuario 🧐](#10-ver-y-modificar-ficha-de-usuario)
-11. [Grabar conversación 🎙️](#11-grabar-conversación)
-12. [Buscador 🔎](#12-buscador)
-13. [Ver notificaciones 🔔](#13-ver-notificaciones)
+9. [Ficha de usuario 📑](#9-generar-ficha-de-usuario)
+10. [Grabar conversación 🎙️](#10-grabar-conversación)
+11. [Buscador 🔎](#11-buscador)
+12. [Ver notificaciones 🔔](#12-ver-notificaciones)
 
 ### 1. Iniciar sesión
 La funcionalidad de inicio de sesión es la primera en la plataforma, permitiendo a los usuarios acceder a su cuenta a través de su correo electrónico y contraseña registrados previamente. Estos datos deben estar almacenados en nuestra base de datos como un "Empleado".
@@ -96,16 +95,13 @@ Al hacer clic en él, se desplegará un reproductor de audio en la parte inferio
 
 [link demo reproductor]
 
-### 9. Generar ficha de usuario
+### 9. Ficha de usuario
 
+### 10. Grabar conversación
 
-### 10. Ver y modificar ficha de usuario
+### 11. Buscador
 
-### 11. Grabar conversación
-
-### 12. Buscador
-
-### 13. Ver notificaciones
+### 12. Ver notificaciones
 
 ## ⏭️ Trabajo futuro
 
