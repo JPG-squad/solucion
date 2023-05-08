@@ -26,10 +26,10 @@ A continuación, se enumeran todas las funcionalidades que ofrece el Portal de c
 1. [Iniciar sesión 🔑](#1-iniciar-sesión)
 2. [Modificar mi perfil 📝](#2-modificar-mi-perfil)
 3. [Añadir un usuario 👤](#3-añadir-un-usuario)
-4. [Filtrar usuarios 🔍](#4-filtrar-usuarios)
+4. [Ordenar usuarios ↕️](#4-filtrar-usuarios)
 5. [Subir conversación 📤](#5-subir-conversación)
 6. [Ver transcripción 📜](#6-ver-transcripción)
-7. [Preguntas efímeras ❓](#7-preguntas-efímeras)
+7. [Saber más 💬](#7-saber-mas)
 8. [Reproducir conversación 🔊](#8-reproducir-conversación)
 9. [Generar ficha de usuario 📑](#9-generar-ficha-de-usuario)
 10. [Ver y modificar ficha de usuario 🧐](#10-ver-y-modificar-ficha-de-usuario)
@@ -54,8 +54,8 @@ Para empezar una conversación, es necesario añadir un usuario. En la parte izq
 
 [link demo añadir usuario]
 
-### 4. Filtrar usuarios
-En la sección de listado de usuarios, encontrarás diversas opciones para filtrarlos y facilitar su búsqueda. Podrás ordenarlos alfabéticamente o por el grado de interacción con ellos. Esto te permitirá encontrar rápidamente al usuario con el que quieres conversar y mejorar la eficiencia de tus interacciones en la plataforma.
+### 4. Ordenar usuarios
+En la sección de listado de usuarios, encontrarás diversas opciones para ordenarlos y facilitar su búsqueda. Podrás ordenarlos alfabéticamente o por el grado de interacción con ellos. Esto te permitirá encontrar rápidamente al usuario con el que quieres conversar y mejorar la eficiencia de tus interacciones en la plataforma.
 
 [link demo filtrar usuarios]
 
@@ -76,11 +76,11 @@ Si esta es la primera conversación, también se generará automáticamente una 
 [link demo subir conversación]
 
 ### 6. Ver transcripción
-En la carta de una conversación verás una serie de botones en la parte inferior de la pantalla. El primer botón, te permitirá ver la transcripción generada por el modelo de inteligencia artificial que has seleccionado al subir la conversación. La transcripción se mostrará en un formato de chat, donde podrás ver el diálogo que ha tenido lugar durante la conversación. Este formato hace que la transcripción sea más fácil de leer y comprender, permitiendo al usuario identificar rápidamente lo que se ha dicho en cada momento.
+En la carta de una conversación verás una serie de botones en la parte inferior. El primer botón, te permitirá ver la transcripción generada por el modelo de inteligencia artificial que has seleccionado al subir la conversación. La transcripción se mostrará en un formato de chat, donde podrás ver el diálogo que ha tenido lugar durante la conversación. Este formato hace que la transcripción sea más fácil de leer y comprender, permitiendo al usuario identificar rápidamente lo que se ha dicho en cada momento.
 
 [link demo ver transcripción]
 
-### 7. Preguntas efímeras
+### 7. Saber más
 Al lado del botón para ver la transcripción, verás otro botón con el texto "Saber más". Al hacer clic en él, se abrirá una ventana emergente con un campo de texto en el que puedes escribir cualquier pregunta relacionada con la conversación o cualquier detalle que se te haya pasado durante la entrevista. Una vez hayas escrito alguna pregunta, va a aparecer una respuesta en pocos segundos.
 
 Esta funcionalidad te permite asegurarte de que no se te escapa ningún detalle importante y te permite revivir cualquier pregunta que hayas hecho durante la entrevista para recordar las respuestas del usuario.
@@ -97,6 +97,7 @@ Al hacer clic en él, se desplegará un reproductor de audio en la parte inferio
 [link demo reproductor]
 
 ### 9. Generar ficha de usuario
+
 
 ### 10. Ver y modificar ficha de usuario
 
