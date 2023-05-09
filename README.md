@@ -56,6 +56,7 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [ACM](#acm)
         - [Route53](#route53)
         - [Backups](#backups)
+        - [Config](#config)
       - [Recuperación de desastres](#recuperación-de-desastres)
         - [Politica de backups](#politica-de-backups)
         - [DRP Test](#drp-test)
@@ -324,6 +325,10 @@ Además, para garantizar la disponibilidad y la recuperación en caso de un desa
 
 Ficheros de terraform:
 - [Carpeta de configuración de backups](https://github.com/JPG-squad/terraform/tree/main/services/backups)
+
+##### Config
+
+TODO 
 
 #### Recuperación de desastres
 
