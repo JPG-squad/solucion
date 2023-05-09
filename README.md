@@ -41,10 +41,25 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [10. Grabar conversación](#10-grabar-conversación)
         - [11. Buscador](#11-buscador)
         - [12. Ver notificaciones](#12-ver-notificaciones)
-    - [Arquitectura Cloud AWS](#arquitectura-cloud-aws)
+    - [Arquitectura Cloud](#arquitectura-cloud)
       - [Descripción](#descripción)
       - [Repositorios](#repositorios-1)
-      - [Recuperación de desastres \& TEST de DRP](#recuperación-de-desastres--test-de-drp)
+      - [AWS Services](#aws-services)
+        - [EC2, ECS, ECR, Fargate, ALB](#ec2-ecs-ecr-fargate-alb)
+        - [Transcribe](#transcribe)
+        - [Aurora RDS](#aurora-rds)
+        - [Opensearch](#opensearch)
+        - [IAM](#iam)
+        - [S3](#s3)
+        - [Cloudfront](#cloudfront)
+        - [Cloudwatch, SNS](#cloudwatch-sns)
+        - [ACM](#acm)
+        - [Route53](#route53)
+        - [Backups](#backups)
+      - [Recuperación de desastres](#recuperación-de-desastres)
+        - [Politica de backups](#politica-de-backups)
+        - [DRP Test](#drp-test)
+        - [MTTR ( Mean Time To Recover )](#mttr--mean-time-to-recover-)
       - [AWS Pilars](#aws-pilars)
         - [Excelencia operativa](#excelencia-operativa)
         - [Seguridad](#seguridad)
@@ -52,6 +67,9 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [Eficiencia del rendimiento](#eficiencia-del-rendimiento)
         - [Optimización de costos](#optimización-de-costos)
         - [Sostenibilidad](#sostenibilidad)
+      - [CI/CD](#cicd)
+      - [Costes](#costes)
+  - [⏭️ Local development](#️-local-development)
   - [⏭️ Demo](#️-demo)
   - [👥 Team Members](#-team-members)
   - [⏭️ Trabajo futuro](#️-trabajo-futuro)
@@ -179,18 +197,135 @@ Al hacer clic en él, se desplegará un reproductor de audio en la parte inferio
 
 ##### 12. Ver notificaciones
 
-### Arquitectura Cloud AWS
+### Arquitectura Cloud
 
 #### Descripción
 
 #### Repositorios
 
-- [Terraform](https://github.com/JPG-squad/terraform) 
+- [Terraform](https://github.com/JPG-squad/terraform)
+
+- Utilizamos **aws-vault** para ejecutar Terraform de forma segura y con una capa adicional de seguridad mediante MFA (autenticación multifactor). Esto significa que antes de ejecutar cualquier comando de Terraform, primero debemos autenticarnos mediante MFA y solo entonces podemos ejecutar Terraform. AWS-Vault también ofrece la opción de guardar las credenciales cifradas en el disco, lo que facilita su gestión.
+
+- Usamos **Terraform Workspaces** para mantener el mismo código de Terraform y poder crear los mismos recursos en múltiples regiones, como España e Irlanda. Al usar workspaces, podemos tener diferentes entornos de infraestructura (por ejemplo, default y drp ) en diferentes regiones y aún así mantener el mismo código de Terraform. Esto nos ayuda a mantener un proceso de implementación consistente y predecible en todas nuestras regiones. Además, nos permite realizar cambios en un workspace sin afectar a los demás, lo que mejora la gestión de cambios en nuestras infraestructuras.
 
 [![Terraform Icon](https://img.shields.io/badge/-Terraform-purple?logo=terraform&logoColor=white&style=flat)](https://www.terraform.io/)
 [![aws-vault Icon](https://img.shields.io/badge/-aws--vault-orange?logo=amazon-aws&logoColor=white&style=flat)](https://github.com/99designs/aws-vault)
 
-#### Recuperación de desastres & TEST de DRP
+#### AWS Services
+
+##### EC2, ECS, ECR, Fargate, ALB
+
+Utilizamos Amazon EC2 por dos razones principales en nuestra infraestructura. En primer lugar, aprovechamos EC2 para provisionar la capacidad de nuestras tareas de backend de ECS a un costo menor que Fargate en nuestra cuenta de producción. Esto nos permite optimizar nuestros costos mientras seguimos manteniendo la capacidad de controlar la capacidad de nuestras tareas de backend. Además, utilizamos EC2 para lanzar un Bastion Host cuando es necesario, que se puede detener fácilmente cuando no se necesita. El Bastion Host sirve como un proxy SSH seguro que nos permite acceder a nuestros paneles de OpenSearch de manera segura.
+
+Utilizamos Amazon ECS como nuestro orquestador de servicios para administrar y orquestar nuestros servicios contenerizados en la nube. También utilizamos Fargate, que nos permite ejecutar contenedores de Docker sin tener que administrar las instancias subyacentes de EC2. En particular, usamos Fargate para iniciar nuestro servicio de backend DRP.
+
+Finalmente, utilizamos el servicio de balanceo de carga de aplicaciones (ALB) para enrutar las solicitudes entrantes a través de nuestros servicios contenerizados. ALB es un servicio de balanceo de carga que distribuye el tráfico entrante en varios destinos, como instancias EC2, contenedores y direcciones IP. Al utilizar ALB, podemos mejorar la disponibilidad y escalabilidad de nuestras aplicaciones, escalar automáticamente hacia arriba o hacia abajo según la demanda y enrutar el tráfico a destinos saludables.
+
+Ficheros de terraform:
+- [Carpeta configuración Cluster ECS, EC2 instances used as infrastructure for ECS with autoscaling and Bastion Host](https://github.com/JPG-squad/terraform/tree/main/services/ecs/cluster)
+- [Carpeta configuración application load balancer](https://github.com/JPG-squad/terraform/tree/main/services/alb/public)
+- [Carpeta configuración servicio backend, contiene ECR, especificaciones de corret EC2 or Fargate on DRP](https://github.com/JPG-squad/terraform/tree/main/applications/backend)
+
+##### Transcribe
+
+Utilizamos AWS Transcribe para obtener transcripciones precisas y diarizadas de nuestras conversaciones y entrevistas. La función de diarización nos permite identificar qué persona está hablando en cada momento, lo que facilita el análisis de la conversación y nos permite obtener información relevante para nuestra aplicación. Esta herramienta es muy útil para nosotros, ya que nos ahorra tiempo y esfuerzo al transcribir nuestras conversaciones de manera automática y precisa.
+
+##### Aurora RDS
+
+Utilizamos AWS Aurora como nuestra base de datos relacional para nuestra aplicación. Esta herramienta nos permite tener una base de datos altamente disponible en más de una zona de disponibilidad, lo que garantiza que nuestros datos siempre estén disponibles para nosotros y para nuestros clientes. Además, no tenemos que preocuparnos por la cantidad de espacio libre en nuestra base de datos, ya que AWS Aurora se encarga automáticamente de escalar nuestra base de datos para satisfacer nuestras necesidades de almacenamiento en función de la demanda. Esto nos permite enfocarnos en nuestro negocio principal sin tener que preocuparnos por mantener y administrar nuestra base de datos. En general, estamos muy satisfechos con AWS Aurora y lo recomendamos ampliamente a otras empresas que buscan una solución de base de datos escalable y altamente disponible.
+
+Ficheros de terraform:
+- [Carpeta configuración RDS](https://github.com/JPG-squad/terraform/tree/main/services/rds/postgresql)
+
+##### Opensearch
+
+Utilizamos AWS OpenSearch como nuestro servicio administrado de búsqueda en nuestro negocio. Esta herramienta nos permite ahorrar tiempo y esfuerzo al no tener que preocuparnos por la gestión y el mantenimiento de la infraestructura de búsqueda. Con AWS OpenSearch, podemos almacenar nuestras conversaciones en formato JSON y buscar texto en ellas de forma rápida y sencilla. Además, AWS OpenSearch es altamente escalable, los datos de búsqueda se almacenan en clústeres de datos altamente disponibles y se cifran tanto en tránsito como en reposo, lo que garantiza la privacidad y la protección de los datos de los clientes.
+
+Ficheros de terraform:
+- [Carpeta configuración del dominio de Opensearch](https://github.com/JPG-squad/terraform/tree/main/services/opensearch)
+
+##### IAM
+
+Diagrama
+
+Ficheros de terraform:
+- [Carpeta principal de configuración IAM](https://github.com/JPG-squad/terraform/tree/main/global/iam)
+- [IAM roles y policies del servico de backend para pull & push on ECR y para desplegar el servicio](https://github.com/JPG-squad/terraform/blob/main/applications/backend/iam.tf)
+
+##### S3
+
+Utilizamos Amazon S3 para varias tareas en nuestra aplicación. En primer lugar, alojamos nuestro frontend web en la región de España e Irlanda. Además, utilizamos S3 para almacenar los audios de las conversaciones y los archivos de salida generados por AWS Transcribe en la región de París. También replicamos estos archivos a un bucket en la región de Irlanda para tener redundancia y garantizar la disponibilidad de los datos en caso de cualquier interrupción en una región determinada. La flexibilidad y escalabilidad de S3 nos permite gestionar fácilmente nuestro almacenamiento en la nube de manera eficiente y sin preocupaciones.
+
+También aplicamos políticas de ciclo de vida de S3 en el bucket de audios. Con estas políticas, podemos automatizar la transición de los objetos a diferentes clases de almacenamiento, como a clase de acceso menos frecuente (S3 Standard-Infrequent Access) o almacenamiento en frío (S3 Glacier), después de un cierto período de tiempo. 
+
+Ficheros de terraform:
+- [Carpeta de configuración de S3](https://github.com/JPG-squad/terraform/tree/main/services/s3)
+
+##### Cloudfront
+
+Utilizamos Amazon CloudFront para distribuir el contenido de nuestro frontend web de manera global y asegurar una baja latencia y alta disponibilidad para los usuarios finales. Usamos dos buckets de Amazon S3: uno configurado como primario y otro como secundario en caso de desastres. 
+
+CloudFront nos permite definir reglas para cachear y entregar contenido estático de manera más eficiente, lo que reduce la carga de nuestro servidor de origen y mejora el rendimiento del sitio web. Además, CloudFront tiene la capacidad de utilizar certificados SSL personalizados para proporcionar una conexión segura a nuestro sitio web. 
+
+En resumen, CloudFront nos permite tener una entrega rápida y confiable del contenido de nuestro sitio web a nivel global, así como también ayuda a mejorar el rendimiento del sitio y la seguridad de la conexión.
+
+Ficheros de terraform:
+- [Carpeta de configuración de cloudfront](https://github.com/JPG-squad/terraform/tree/main/services/cloudfront/frontend)
+
+##### Cloudwatch, SNS
+
+Utilizamos Amazon CloudWatch para monitorear nuestros servicios en la nube y obtener información sobre el rendimiento de nuestra aplicación. Con CloudWatch, podemos recopilar y rastrear métricas, recopilar y monitorear archivos de registro, configurar alarmas y reaccionar automáticamente a los cambios en nuestros recursos. Además, podemos usar CloudWatch para obtener información sobre el rendimiento de nuestra aplicación y tomar decisiones informadas sobre cómo mejorarla.
+
+Tenemos el siguiente dashboard con las métricas más importantes de nuestra aplicación:
+
+Y las alarmas que tenemos configuradas son las siguientes:
+
+1. Alarma para la utilización de CPU de ECS: esta alarma se activa cuando la utilización de la CPU del servicio ECS supera el 80%. Esto puede indicar que el servicio ECS está subutilizado o que se necesita una instancia ECS adicional para distribuir la carga.
+
+2. Alarma para la utilización de memoria de ECS: esta alarma se activa cuando la utilización de la memoria del servicio ECS supera el 80%. Esto puede indicar que el servicio ECS está subutilizado o que se necesita una instancia ECS adicional para distribuir la carga.
+
+3. Alarma para la utilización de CPU de RDS: esta alarma se activa cuando la utilización de la CPU de una instancia de base de datos RDS supera el 80%. Esto puede indicar que la instancia de la base de datos está subutilizada o que se necesita una instancia adicional para distribuir la carga.
+
+4. Alarma para la memoria libre de RDS: esta alarma se activa cuando el espacio de almacenamiento disponible en una instancia de base de datos RDS cae por debajo de 1 GB. Esto puede indicar que se necesita una instancia de base de datos RDS adicional o que se debe considerar la optimización del almacenamiento de la base de datos.
+
+5. Alarma para la cantidad de hosts saludables: esta alarma se activa cuando la cantidad de hosts saludables de un grupo de destino de Elastic Load Balancer cae por debajo de 1. Esto puede indicar que uno o más hosts han fallado y que se debe tomar medidas para solucionar el problema.
+
+6. Alarma para el espacio de almacenamiento libre de Elasticsearch: esta alarma se activa cuando el espacio de almacenamiento libre en un dominio de Elasticsearch cae por debajo de 5 GB. Esto puede indicar que se necesita una instancia de Elasticsearch adicional o que se debe considerar la optimización del almacenamiento de Elasticsearch.
+
+7. Alarma para la cantidad de trabajos de transcripción ejecutados en los últimos 30 minutos: esta alarma se activa cuando se han ejecutado más de 30 trabajos de transcripción en los últimos 30 minutos. Esto puede indicar una sobrecarga en la transcripción de audio y que se debe considerar la optimización de los recursos de transcripción.
+
+Ficheros de terraform:
+- [Carpeta de configuración de cloudwatch y sns](https://github.com/JPG-squad/terraform/blob/main/global/monitor)
+
+##### ACM
+
+Utilizamos ACM para crear certificados SSL/TLS para dos dominios distintos. El primer dominio es https://portal-conversaciones.app-deploy.com, el cual es utilizado en las regiones de España e Irlanda, y el segundo dominio es https://app.portal-conversaciones.app-deploy.com, el cual se utiliza en la región de Virginia.
+
+Ficheros de terraform:
+- [Carpeta de configuración de ACM](https://github.com/JPG-squad/terraform/tree/main/services/acm)
+- 
+##### Route53
+
+AWS Route53 es un servicio de DNS administrado que utilizamos para crear y administrar los dominios necesarios para nuestra aplicación. Route53 nos permite crear registros DNS para cada uno de nuestros dominios, lo que nos permite asignar nombres de dominio a direcciones IP específicas. 
+
+Además, también utilizamos Route53 para crear health checks con failover en cada una de nuestras regiones. Estos health checks se utilizan para monitorear el estado de nuestro backend en cada región y asegurarnos de que está disponible y respondiendo correctamente. Si se detecta un problema en una región, Route53 puede redirigir automáticamente el tráfico a otra región que esté disponible y funcione correctamente, lo que nos permite garantizar una alta disponibilidad y una experiencia de usuario sin interrupciones.
+
+Ficheros de terraform:
+- [Carpeta de configuración de route53](https://github.com/JPG-squad/terraform/tree/main/global/route53)
+- [ALB route53](https://github.com/JPG-squad/terraform/tree/main/services/alb/public/route53.tf)
+- [Cloudfront route53](https://github.com/JPG-squad/terraform/blob/main/services/cloudfront/frontend/main.tf)
+
+##### Backups
+
+Utilizamos AWS Backups para asegurarnos de que nuestra base de datos principal de producción esté respaldada regularmente de acuerdo con nuestra política de backups. Esto implica la creación de programaciones de respaldo en AWS Backups que se ejecutan periódicamente para capturar los datos de la base de datos RDS Aurora y almacenarlos de forma segura en AWS. 
+
+Además, para garantizar la disponibilidad y la recuperación en caso de un desastre, también replicamos estos backups a la región de Irlanda, lo que nos permite recuperar nuestra base de datos en caso de un fallo o interrupción en la región principal. AWS Backups nos brinda una forma fácil y segura de realizar y gestionar nuestros backups.
+
+Ficheros de terraform:
+- [Carpeta de configuración de backups](https://github.com/JPG-squad/terraform/tree/main/services/backups)
+
+#### Recuperación de desastres
 
 Este es nuestro plan de recuperación de desastres para garantizar la disponibilidad y continuidad de nuestros servicios en caso de cualquier imprevisto. El plan consiste en las siguientes acciones:
 
@@ -211,6 +346,19 @@ Este modelo de recuperación de desastres se adapta a nuestras necesidades y pre
 Adjunto encontrarás un video de nuestra última prueba de DRP.
 <a href="https://www.youtube.com/watch?v=TUZmK0X9zgk">Demostración del Plan de Recuperación de Desastres</a>
 
+##### Politica de backups
+
+Nuestra política de backups es la siguiente:
+1. Realizamos backups de la base de datos cada 1 hora los cuales expiran después de 30 días.
+2. Realizamos backups de la base de datos cada 7 días los cuales expiran después de 90 días.
+3. Realizamos backups de la base de datos cada 30 días los cuales expiran después 1 año.
+
+Ficheros de terraform:
+- [Politicas de backups](https://github.com/JPG-squad/terraform/blob/main/services/backups/main.tf)
+
+##### DRP Test
+
+##### MTTR ( Mean Time To Recover )
 
 #### AWS Pilars
 
@@ -255,6 +403,11 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 1. **Maximizar la utilización**: Actualmente, estamos cumpliendo con la regla de maximizar la utilización mediante el uso de una sola instancia y la selección del tamaño de instancia más pequeño para cada servicio debido a limitaciones presupuestarias. Sin embargo, hemos tomado medidas para analizar la utilización utilizando el panel de CloudWatch y alarmas, y estamos preparados para escalar según sea necesario para aumentar la utilización y maximizar la eficiencia energética del hardware subyacente.
 2. **Anticipar y adoptar nuevas ofertas de hardware y software más eficientes**: Estamos utilizando los nuevos procesadores AWS Graviton diseñados para ofrecer la mejor relación precio-rendimiento para nuestras cargas de trabajo en la nube que se ejecutan en Amazon EC2 con arm. Esto nos permite aprovechar los últimos avances tecnológicos y mejorar la eficiencia de nuestras cargas de trabajo en la nube. Además, hemos diseñado nuestro sistema con flexibilidad en mente, lo que nos permite adoptar rápidamente nuevas tecnologías eficientes a medida que estén disponibles.
 3. **Usar servicios administrados**: El uso de servicios administrados como AWS Fargate y las configuraciones de ciclo de vida de Amazon S3 nos permite compartir recursos en una amplia base de clientes, lo que conduce a una reducción de los requisitos de infraestructura para nuestras cargas de trabajo en la nube.
+
+#### CI/CD
+#### Costes
+
+## ⏭️ Local development
 
 ## ⏭️ Demo
 
