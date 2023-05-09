@@ -298,6 +298,7 @@ Utilizamos Amazon CloudWatch para monitorear nuestros servicios en la nube y obt
 Tenemos el siguiente dashboard con las métricas más importantes de nuestra aplicación, en la [siguiente carpeta dentro de este repostorio](monitor/) tenemos 3 images de como se ve el dashboard.
 
 Ejemplo de alertas:
+
 ![Alertas](img/alertas.png)
 
 
