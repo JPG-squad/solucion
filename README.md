@@ -409,7 +409,15 @@ Ficheros de terraform:
 
 ##### DRP Test
 
+Hemos realizado una prueba de verificación para comprobar que podemos recuperarnos en otra región en caso de que ocurra algún desastre en la región de España. El tiempo total de recuperación ha sido de 15 minutos, lo que es muy bueno para una arquitectura failover.
+
+Adjunto se encuentra el enlace al video de la prueba de desastre:
+
+[Enlace al video](insertar aquí el enlace al video)
+
 ##### MTTR ( Mean Time To Recover )
+
+Nuestra media de tiempo de recuperación hasta el momento es de 15 minutos. Es importante tener en cuenta que contamos con backups cada hora y replicados en otra región, lo que significa que asumimos que como máximo podríamos perder datos correspondientes a una hora. Esto es aceptable para nosotros, ya que no tenemos datos críticos que no podamos perder.
 
 #### AWS Pilars
 
