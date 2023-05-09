@@ -406,6 +406,8 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 
 #### CI/CD
 
+![CI/CD](img/CI_CD.svg)
+
 #### Costes
 
 ## ⏭️ Local development
