@@ -420,8 +420,8 @@ En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pe
 
 3. Garantizar la seguridad de los datos: Nuestra aplicación utiliza medidas de seguridad para proteger la información personal de los usuarios, como el cifrado de datos y la autenticación de usuarios autorizados.
 
-4. Garantizar el acceso y la portabilidad de los datos: Actualmente, solo los empleados de la Cruz Roja tienen acceso a los datos, pero se debería implementar un sistema para que los usuarios puedan acceder y ver sus propios datos. También se podría facilitar la transferencia de datos de un usuario a otro.
-
+4. Garantizar el acceso y la portabilidad de los datos: Actualmente, solo los empleados de la Cruz Roja tienen acceso a los datos, pero se debería implementar un sistema para que los usuarios puedan acceder y ver sus propios datos. También se podría facilitar la transferencia de datos.
+  
 5. Proporcionar una forma fácil de eliminar los datos: Si bien actualmente no existe esta funcionalidad, se podría implementar en el futuro.
 
 6. Proporcionar una política de privacidad clara y fácil de entender: Es esencial que nuestra aplicación cuente con una política de privacidad que explique claramente cómo se recopila, utiliza y comparte la información personal del usuario.
