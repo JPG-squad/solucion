@@ -221,7 +221,7 @@ Utilizamos Amazon EC2 por dos razones principales en nuestra infraestructura. En
 
 Utilizamos Amazon ECS como nuestro orquestador de servicios para administrar y orquestar nuestros servicios contenerizados en la nube. También utilizamos Fargate, que nos permite ejecutar contenedores de Docker sin tener que administrar las instancias subyacentes de EC2. En particular, usamos Fargate para iniciar nuestro servicio de backend DRP.
 
-Finalmente, utilizamos el servicio de balanceo de carga de aplicaciones (ALB) para enrutar las solicitudes entrantes a través de nuestros servicios contenerizados. ALB es un servicio de balanceo de carga que distribuye el tráfico entrante en varios destinos, como instancias EC2, contenedores y direcciones IP. Al utilizar ALB, podemos mejorar la disponibilidad y escalabilidad de nuestras aplicaciones, escalar automáticamente hacia arriba o hacia abajo según la demanda y enrutar el tráfico a destinos saludables.
+Finalmente, utilizamos el servicio de balanceo de carga de aplicaciones (ALB) para enrutar las solicitudes entrantes a través de nuestros servicios contenerizados.
 
 Ficheros de terraform:
 - [Carpeta configuración Cluster ECS, EC2 instances used as infrastructure for ECS with autoscaling and Bastion Host](https://github.com/JPG-squad/terraform/tree/main/services/ecs/cluster)
@@ -234,7 +234,7 @@ Utilizamos AWS Transcribe para obtener transcripciones precisas y diarizadas de 
 
 ##### Aurora RDS
 
-Utilizamos AWS Aurora como nuestra base de datos relacional para nuestra aplicación. Esta herramienta nos permite tener una base de datos altamente disponible en más de una zona de disponibilidad, lo que garantiza que nuestros datos siempre estén disponibles para nosotros y para nuestros clientes. Además, no tenemos que preocuparnos por la cantidad de espacio libre en nuestra base de datos, ya que AWS Aurora se encarga automáticamente de escalar nuestra base de datos para satisfacer nuestras necesidades de almacenamiento en función de la demanda. Esto nos permite enfocarnos en nuestro negocio principal sin tener que preocuparnos por mantener y administrar nuestra base de datos. En general, estamos muy satisfechos con AWS Aurora y lo recomendamos ampliamente a otras empresas que buscan una solución de base de datos escalable y altamente disponible.
+Utilizamos AWS Aurora como nuestra base de datos relacional para nuestra aplicación. Esta herramienta nos permite tener una base de datos altamente disponible en más de una zona de disponibilidad, lo que garantiza que nuestros datos siempre estén disponibles. Además, no tenemos que preocuparnos por la cantidad de espacio libre en nuestra base de datos, ya que AWS Aurora se encarga automáticamente de escalar nuestra base de datos para satisfacer nuestras necesidades de almacenamiento en función de la demanda. Esto nos permite enfocarnos en nuestro negocio principal sin tener que preocuparnos por mantener y administrar nuestra base de datos.
 
 Ficheros de terraform:
 - [Carpeta configuración RDS](https://github.com/JPG-squad/terraform/tree/main/services/rds/postgresql)
@@ -265,36 +265,34 @@ Ficheros de terraform:
 
 ##### Cloudfront
 
-Utilizamos Amazon CloudFront para distribuir el contenido de nuestro frontend web de manera global y asegurar una baja latencia y alta disponibilidad para los usuarios finales. Usamos dos buckets de Amazon S3: uno configurado como primario y otro como secundario en caso de desastres. 
-
-CloudFront nos permite definir reglas para cachear y entregar contenido estático de manera más eficiente, lo que reduce la carga de nuestro servidor de origen y mejora el rendimiento del sitio web. Además, CloudFront tiene la capacidad de utilizar certificados SSL personalizados para proporcionar una conexión segura a nuestro sitio web. 
-
-En resumen, CloudFront nos permite tener una entrega rápida y confiable del contenido de nuestro sitio web a nivel global, así como también ayuda a mejorar el rendimiento del sitio y la seguridad de la conexión.
+Utilizamos Amazon CloudFront para distribuir el contenido de nuestro frontend web de manera global y asegurar una baja latencia y alta disponibilidad. Usamos dos buckets de Amazon S3: uno configurado como primario y otro como secundario en caso de desastres. También nos permite definir reglas para cachear y entregar contenido estático Además, CloudFront tiene la capacidad de utilizar certificados SSL personalizados para proporcionar una conexión segura a nuestro sitio web.
 
 Ficheros de terraform:
 - [Carpeta de configuración de cloudfront](https://github.com/JPG-squad/terraform/tree/main/services/cloudfront/frontend)
 
 ##### Cloudwatch, SNS
 
-Utilizamos Amazon CloudWatch para monitorear nuestros servicios en la nube y obtener información sobre el rendimiento de nuestra aplicación. Con CloudWatch, podemos recopilar y rastrear métricas, recopilar y monitorear archivos de registro, configurar alarmas y reaccionar automáticamente a los cambios en nuestros recursos. Además, podemos usar CloudWatch para obtener información sobre el rendimiento de nuestra aplicación y tomar decisiones informadas sobre cómo mejorarla.
+Utilizamos Amazon CloudWatch para monitorear nuestros servicios en la nube y obtener información sobre el rendimiento de nuestra aplicación. Con CloudWatch, podemos configurar alarmas y reaccionar automáticamente a los cambios en nuestros recursos. Actualmente enviamos estas alarmas a un canal de Slack, utilitzando SNS a traves del email del canal.
 
 Tenemos el siguiente dashboard con las métricas más importantes de nuestra aplicación:
 
+TODO PONER FOTOS
+
 Y las alarmas que tenemos configuradas son las siguientes:
 
-1. Alarma para la utilización de CPU de ECS: esta alarma se activa cuando la utilización de la CPU del servicio ECS supera el 80%. Esto puede indicar que el servicio ECS está subutilizado o que se necesita una instancia ECS adicional para distribuir la carga.
+1. Alarma para la utilización de CPU de ECS: esta alarma se activa cuando la utilización de la CPU del servicio ECS supera el 80%.
 
-2. Alarma para la utilización de memoria de ECS: esta alarma se activa cuando la utilización de la memoria del servicio ECS supera el 80%. Esto puede indicar que el servicio ECS está subutilizado o que se necesita una instancia ECS adicional para distribuir la carga.
+2. Alarma para la utilización de memoria de ECS: esta alarma se activa cuando la utilización de la memoria del servicio ECS supera el 80%. 
 
-3. Alarma para la utilización de CPU de RDS: esta alarma se activa cuando la utilización de la CPU de una instancia de base de datos RDS supera el 80%. Esto puede indicar que la instancia de la base de datos está subutilizada o que se necesita una instancia adicional para distribuir la carga.
+3. Alarma para la utilización de CPU de RDS: esta alarma se activa cuando la utilización de la CPU de una instancia de base de datos RDS supera el 80%. 
 
-4. Alarma para la memoria libre de RDS: esta alarma se activa cuando el espacio de almacenamiento disponible en una instancia de base de datos RDS cae por debajo de 1 GB. Esto puede indicar que se necesita una instancia de base de datos RDS adicional o que se debe considerar la optimización del almacenamiento de la base de datos.
+4. Alarma para la memoria libre de RDS: esta alarma se activa cuando el espacio de almacenamiento disponible en una instancia de base de datos RDS cae por debajo de 1 GB.
 
 5. Alarma para la cantidad de hosts saludables: esta alarma se activa cuando la cantidad de hosts saludables de un grupo de destino de Elastic Load Balancer cae por debajo de 1. Esto puede indicar que uno o más hosts han fallado y que se debe tomar medidas para solucionar el problema.
 
-6. Alarma para el espacio de almacenamiento libre de Elasticsearch: esta alarma se activa cuando el espacio de almacenamiento libre en un dominio de Elasticsearch cae por debajo de 5 GB. Esto puede indicar que se necesita una instancia de Elasticsearch adicional o que se debe considerar la optimización del almacenamiento de Elasticsearch.
+6. Alarma para el espacio de almacenamiento libre de Elasticsearch: esta alarma se activa cuando el espacio de almacenamiento libre en un dominio de Elasticsearch cae por debajo de 5 GB.
 
-7. Alarma para la cantidad de trabajos de transcripción ejecutados en los últimos 30 minutos: esta alarma se activa cuando se han ejecutado más de 30 trabajos de transcripción en los últimos 30 minutos. Esto puede indicar una sobrecarga en la transcripción de audio y que se debe considerar la optimización de los recursos de transcripción.
+7. Alarma para la cantidad de trabajos de transcripción ejecutados en los últimos 30 minutos: esta alarma se activa cuando se han ejecutado más de 30 trabajos de transcripción en los últimos 30 minutos.
 
 Ficheros de terraform:
 - [Carpeta de configuración de cloudwatch y sns](https://github.com/JPG-squad/terraform/blob/main/global/monitor)
@@ -308,9 +306,7 @@ Ficheros de terraform:
 - 
 ##### Route53
 
-AWS Route53 es un servicio de DNS administrado que utilizamos para crear y administrar los dominios necesarios para nuestra aplicación. Route53 nos permite crear registros DNS para cada uno de nuestros dominios, lo que nos permite asignar nombres de dominio a direcciones IP específicas. 
-
-Además, también utilizamos Route53 para crear health checks con failover en cada una de nuestras regiones. Estos health checks se utilizan para monitorear el estado de nuestro backend en cada región y asegurarnos de que está disponible y respondiendo correctamente. Si se detecta un problema en una región, Route53 puede redirigir automáticamente el tráfico a otra región que esté disponible y funcione correctamente, lo que nos permite garantizar una alta disponibilidad y una experiencia de usuario sin interrupciones.
+AWS Route53 es un servicio de DNS administrado que utilizamos para crear y administrar los dominios necesarios para nuestra aplicación. Además, también utilizamos Route53 para crear health checks con failover en cada una de nuestras regiones. Estos health checks se utilizan para monitorear el estado de nuestro backend en cada región y asegurarnos de que está disponible y respondiendo correctamente. Si se detecta un problema en una región, Route53 puede redirigir automáticamente el tráfico a otra región que esté disponible y funcione correctamente.
 
 Ficheros de terraform:
 - [Carpeta de configuración de route53](https://github.com/JPG-squad/terraform/tree/main/global/route53)
@@ -319,9 +315,7 @@ Ficheros de terraform:
 
 ##### Backups
 
-Utilizamos AWS Backups para asegurarnos de que nuestra base de datos principal de producción esté respaldada regularmente de acuerdo con nuestra política de backups. Esto implica la creación de programaciones de respaldo en AWS Backups que se ejecutan periódicamente para capturar los datos de la base de datos RDS Aurora y almacenarlos de forma segura en AWS. 
-
-Además, para garantizar la disponibilidad y la recuperación en caso de un desastre, también replicamos estos backups a la región de Irlanda, lo que nos permite recuperar nuestra base de datos en caso de un fallo o interrupción en la región principal. AWS Backups nos brinda una forma fácil y segura de realizar y gestionar nuestros backups.
+Utilizamos AWS Backups para asegurarnos de que nuestra base de datos RDS Aurora principal de producción esté respaldada regularmente de acuerdo con nuestra política de backups. Además, para garantizar la disponibilidad y la recuperación en caso de un desastre, también replicamos estos backups a la región de Irlanda, lo que nos permite recuperar nuestra base de datos en caso de un fallo o interrupción en la región principal.
 
 Ficheros de terraform:
 - [Carpeta de configuración de backups](https://github.com/JPG-squad/terraform/tree/main/services/backups)
@@ -334,13 +328,13 @@ TODO
 
 Este es nuestro plan de recuperación de desastres para garantizar la disponibilidad y continuidad de nuestros servicios en caso de cualquier imprevisto. El plan consiste en las siguientes acciones:
 
-1. **Backups de base de datos**: Utilizamos el servicio AWS Backups para realizar copias de seguridad de nuestra base de datos y las replicamos a la región de Irlanda para garantizar la redundancia y disponibilidad de nuestros datos.
+1. **Backups de base de datos**: Utilizamos el servicio AWS Backups para realizar copias de seguridad de nuestra base de datos y las replicamos a la región de Irlanda.
 
-2. **Imágenes del backend en ECR**: Subimos las imágenes del backend tanto en el ECR de España como en el de Irlanda para tener una copia de seguridad de nuestras imágenes.
+2. **Imágenes del backend en ECR**: Subimos las imágenes del backend tanto en el ECR de España como en el de Irlanda.
 
 3. **Frontend en buckets de S3**: El frontend (web) está alojado en buckets de S3 en España e Irlanda. Al subir el código se hace en ambos buckets a la vez, y nuestra CDN Cloudfront tiene configurado el bucket de España como principal y el de Irlanda como failover.
 
-4. **Bucket S3 en París**: En el servicio de producción, usamos Transcribe en París y por eso necesitamos un bucket de S3 en esa región. Este bucket lo replicamos usando la funcionalidad de S3 a uno igual en la región de Irlanda para tener una copia de seguridad.
+4. **Bucket S3 en París**: En el servicio de producción, usamos Transcribe en París y por eso necesitamos un bucket de S3 en esa región. Este bucket lo replicamos usando la funcionalidad de S3 a uno igual en la región de Irlanda.
 
 5. **Cluster Fargate en Irlanda**: En Irlanda, configuramos un cluster Fargate con las mismas características que el de España, pero sin EC2. El servicio tiene asociado 0 tareas corriendo. Utilizamos healthchecks de Route53 para comprobar si los servicios de las dos regiones están healthy pasando por los ALB, y dependiendo de cuál esté healthy, hacemos failover a Irlanda.
 
