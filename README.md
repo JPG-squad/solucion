@@ -206,7 +206,7 @@ Al hacer clic en él, se desplegará un reproductor de audio en la parte inferio
 
 - [Terraform](https://github.com/JPG-squad/terraform)
 
-- Utilizamos **aws-vault** para ejecutar Terraform de forma segura y con una capa adicional de seguridad mediante MFA (autenticación multifactor). Esto significa que antes de ejecutar cualquier comando de Terraform, primero debemos autenticarnos mediante MFA y solo entonces podemos ejecutar Terraform. AWS-Vault también ofrece la opción de guardar las credenciales cifradas en el disco, lo que facilita su gestión.
+- Utilizamos **aws-vault** para ejecutar Terraform de forma segura y con una capa adicional de seguridad mediante MFA (autenticación multifactor).  AWS-Vault también ofrece la opción de guardar las credenciales cifradas en el disco.
 
 - Usamos **Terraform Workspaces** para mantener el mismo código de Terraform y poder crear los mismos recursos en múltiples regiones, como España e Irlanda. Al usar workspaces, podemos tener diferentes entornos de infraestructura (por ejemplo, default y drp ) en diferentes regiones y aún así mantener el mismo código de Terraform. Esto nos ayuda a mantener un proceso de implementación consistente y predecible en todas nuestras regiones. Además, nos permite realizar cambios en un workspace sin afectar a los demás, lo que mejora la gestión de cambios en nuestras infraestructuras.
 
