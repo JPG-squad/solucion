@@ -400,8 +400,8 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 ##### Sostenibilidad
 
 1. **Maximizar la utilización**: Actualmente, estamos cumpliendo con la regla de maximizar la utilización mediante el uso de una sola instancia y la selección del tamaño de instancia más pequeño para cada servicio debido a limitaciones presupuestarias. Sin embargo, hemos tomado medidas para analizar la utilización utilizando el panel de CloudWatch y alarmas, y estamos preparados para escalar según sea necesario para aumentar la utilización y maximizar la eficiencia energética del hardware subyacente.
-2. **Anticipar y adoptar nuevas ofertas de hardware y software más eficientes**: Estamos utilizando los nuevos procesadores AWS Graviton diseñados para ofrecer la mejor relación precio-rendimiento para nuestras cargas de trabajo en la nube que se ejecutan en Amazon EC2 con arm. Esto nos permite aprovechar los últimos avances tecnológicos y mejorar la eficiencia de nuestras cargas de trabajo en la nube. Además, hemos diseñado nuestro sistema con flexibilidad en mente, lo que nos permite adoptar rápidamente nuevas tecnologías eficientes a medida que estén disponibles.
-3. **Usar servicios administrados**: El uso de servicios administrados como AWS Fargate y las configuraciones de ciclo de vida de Amazon S3 nos permite compartir recursos en una amplia base de clientes, lo que conduce a una reducción de los requisitos de infraestructura para nuestras cargas de trabajo en la nube.
+2. **Anticipar y adoptar nuevas ofertas de hardware y software más eficientes**: Estamos utilizando los nuevos procesadores AWS Graviton diseñados para ofrecer la mejor relación precio-rendimiento para nuestras cargas de trabajo en la nube que se ejecutan en Amazon EC2 con arm. Esto nos permite aprovechar los últimos avances tecnológicos y mejorar la eficiencia de nuestras cargas de trabajo en la nube.
+3. **Usar servicios administrados**: El uso de servicios administrados como AWS Fargate y las configuraciones de ciclo de vida de Amazon S3 nos permite compartir recursos en una amplia base de clientes.
 
 #### CI/CD
 #### Costes
