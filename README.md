@@ -71,6 +71,7 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
       - [CI/CD](#cicd)
       - [Costes](#costes)
   - [⏭️ Local development](#️-local-development)
+  - [GDPR](#gdpr)
   - [⏭️ Demo](#️-demo)
   - [👥 Team Members](#-team-members)
   - [⏭️ Trabajo futuro](#️-trabajo-futuro)
@@ -404,9 +405,12 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 3. **Usar servicios administrados**: El uso de servicios administrados como AWS Fargate y las configuraciones de ciclo de vida de Amazon S3 nos permite compartir recursos en una amplia base de clientes.
 
 #### CI/CD
+
 #### Costes
 
 ## ⏭️ Local development
+
+## GDPR
 
 ## ⏭️ Demo
 
