@@ -412,8 +412,6 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 
 ## GDPR
 
-Claro, aquí te dejo una redacción que cubre los puntos que mencionaste:
-
 En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pero sí podemos dar una visión general de los puntos más importantes y cómo nuestra aplicación cumple con ellos, así como señalar áreas que pueden mejorarse en el futuro.
 
 1. Obtener el consentimiento del usuario: Es importante que el empleado de la Cruz Roja explique cómo se procesarán los datos del usuario y obtenga su consentimiento antes de recopilar cualquier información o grabar conversaciones. Nuestra aplicación también debería permitir que los usuarios retiren su consentimiento en cualquier momento.
