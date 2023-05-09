@@ -57,6 +57,7 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [Route53](#route53)
         - [Backups](#backups)
         - [Config](#config)
+        - [Cloudtrail](#cloudtrail)
       - [Recuperación de desastres](#recuperación-de-desastres)
         - [Politica de backups](#politica-de-backups)
         - [DRP Test](#drp-test)
@@ -340,7 +341,19 @@ Ficheros de terraform:
 
 ##### Config
 
-TODO 
+Config es un servicio que utilizamos en nuestra arquitectura para hacer seguimiento de los cambios realizados en los recursos de AWS en diferentes regiones. Lo usamos en España, París, Irlanda y Virginia para tener una vista completa y detallada del estado y la configuración de los recursos de AWS.
+
+Ficheros de terraform:
+- [Carpeta de configuración de config](https://github.com/JPG-squad/terraform/tree/main/services/config)
+
+##### Cloudtrail
+
+En nuestra arquitectura, hemos utilizado CloudTrail para hacer un seguimiento de las acciones realizadas en nuestra infraestructura de AWS. La razón principal para utilizar CloudTrail es para poder auditar y monitorear las acciones realizadas en nuestra cuenta de AWS, lo que nos ayuda a detectar y prevenir posibles problemas de seguridad.
+
+En particular, hemos habilitado CloudTrail en Virginia con la opción de multiregión, lo que nos permite hacer un seguimiento de las acciones realizadas en todas las regiones donde tenemos recursos de AWS. De esta manera, podemos tener una visibilidad completa de todas las acciones realizadas en nuestra infraestructura de AWS, incluso en regiones donde no se han habilitado CloudTrail de forma individual.
+
+Ficheros de terraform:
+- [Carpeta de configuración de cloudtrail](https://github.com/JPG-squad/terraform/tree/main/services/cloudtrail)
 
 #### Recuperación de desastres
 
