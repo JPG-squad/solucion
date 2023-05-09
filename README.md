@@ -135,24 +135,28 @@ A continuación, se enumeran todas las funcionalidades que ofrece el Portal de c
 ##### 1. Iniciar sesión
 La funcionalidad de inicio de sesión es la primera en la plataforma, permitiendo a los usuarios acceder a su cuenta a través de su correo electrónico y contraseña registrados previamente. Estos datos deben estar almacenados en nuestra base de datos como un "Empleado".
 
-[link demo login]
+**Implementación técnica**
+> El sistema de autenticación es un sistema senzillo, con un **token** que se almacena en la base de datos y se envia al cliente para que lo almacene en el **local storage**. Este token se envia en cada peticion al backend para que este pueda identificar al usuario. Este token se genera cuando el usuario introduce correctamente su usuario y contrasenya, y se eliminia al cerrar sesión.
 
 ##### 2. Modificar mi perfil
 Esta funcionalidad te permite actualizar la información de tu cuenta en la plataforma. Para acceder a esta funcionalidad, haz clic en el icono de tu perfil ubicado en la esquina superior derecha de la pantalla. Verás que aparecerá un menú desplegable con varias opciones, entre ellas "Editar mi perfil". Al seleccionar esta opción, podrás editar tus datos personales, por ahora solo tu nombre. También puedes cerrar sesión desde este mismo menú.
 
 La funcionalidad ahora mismo no tiene mucho sentido pero esta pensada por si en un futuro un empleado tiene más campos editables.
 
-[link demo modificar mi perfil y logout]
+**Implementación técnica**
+> Para modificar el perfil, el usuario dispone de una model dónde permitimos cambiar los campos que són ediatables del model del trabajador de la Cruz Roja. Para ello, se hace una petición al backend con los datos del usuario y se actualizan en la base de datos.
 
 ##### 3. Añadir un usuario
 Para empezar una conversación, es necesario añadir un usuario. En la parte izquierda de la plataforma, encontrarás el listado de usuarios y podrás agregar uno nuevo. Solo necesitas introducir su nombre y correo electrónico, y opcionalmente, su número de teléfono. Cuando agregues al usuario, aparecerá en la parte superior de la lista y podrás comenzar una conversación con él o ella desde la parte derecha de la plataforma.
 
-[link demo añadir usuario]
+**Implementación Técnica**
+> Un trabajador de la cruz roja añade un nueve paciente des de la modal que se muestra en en frontend. Luego, estos datos sirven para crear una nueva instancia del model que representa a un usuario en la base de datos. Este usuario queda enlazado con el trabajador de la cruz roja.
 
 ##### 4. Ordenar usuarios
 En la sección de listado de usuarios, encontrarás diversas opciones para ordenarlos y facilitar su búsqueda. Podrás ordenarlos alfabéticamente o por el grado de interacción con ellos. Esto te permitirá encontrar rápidamente al usuario con el que quieres conversar y mejorar la eficiencia de tus interacciones en la plataforma.
 
-[link demo filtrar usuarios]
+**Implementación Técnica**
+> Des del frontend, somos capaces de ordenar el listado de usuarios por dos criterios: aflabéticamente y por "**frecuencia de interacción**" (dónde el último usuario con el que se ha hecho una acción se muestra arriba o abajo, dependiendo de la ordenación). Para la ordenación alfabética, lo hace puramente el frontend. Para la ordenación por interacción, se utiliza el campo *updated_at* de la base de datos del model usuario. Este campo se actualiza cada vez que se hace una acción con este.
 
 ##### 5. Subir conversación
 
@@ -168,12 +172,20 @@ Además, habrá tres botones que explicaremos más adelante en otras funcionalid
 
 Si esta es la primera conversación, también se generará automáticamente una ficha de usuario, de la cual hablaremos más adelante.
 
-[link demo subir conversación]
+**Implementación Técnica**
+> Para subir una conversación, el usuario selecciona un archivo y lo sube utilizando el botón de subir conversación. En este momento, el front comprueba que el fichero es un fichero de audio y de alguno de los formatos que soportamos. Además, el usuario puede elegir qué model de **IA** desea utilitzar para transcribir la conversación. Tanto el fichero como este parámetro son pasados al backend para hacer la acción de subir la conversación (uno como datos del POST y el otro como query parameter). <br> <br>
+> Una vez el backend recibe la petición, la manda para transcribir a la inteligiencia artificial seleccionada: **AWS Transcribe** o **Deepgram** (siendo **AWS Transcribe** la que se utiliza por defecto porque ha sido la que nos da mejor resultados de diarización). Cuando esta termina, el backend recibe la transcripción. Esta es una implementación dónde el backend espera mientras se va procesando, haciendo **POLLING** para ver cuando está. La implementación concreta de cada modelo utilizado se puede ver en el código, así como los parametros utilizados para cada uno (que han sido el resultado de hacer pruebas e ir refinandolo). En ambas, pedimos que la IA haga diagnóstico de los hablantes, para poder identificarlos en la transcripción (diarization). <br> <br>
+> Una vez recibida la respuesta, se trata el resultado según el formato de salida que nos devuelve, y creamos una **estructura en forma de chat**, construyendo frases intercaladas entre los hablantes que hayan en la conversación. <br> <br>
+> Después, con esta transcirpción que hemos generado, **intentamos responder las preguntas del formulario** que tenemos el objetivo de rellenar (la "*ficha de usuario*", como lo llamamos nosotros). Para hacerlo, utilizamos dos funciones que hemos creado, que utilizan **ChatGPT de OpenAI** para intentar determinar dos coses: si se han respondido o no las preguntas y, para las que sí que detecta que se ha hablado o respondido, que genere una respuesta. Con esto, guardamos este "**checklist**" de lo respondido en modelos de la base de datos, donde guardamos las repspuestas para este usuario (que nos serviran para crear la ficha de usuario). <br> <br>
+> Por último, también utilizamos el **ChatGPT** para generar un **título** y **descripción** automáticos para la conversación, que es lo que terminamos devolviendo en la llamada del frontend.
 
 ##### 6. Ver transcripción
 En la carta de una conversación verás una serie de botones en la parte inferior. El primer botón, te permitirá ver la transcripción generada por el modelo de inteligencia artificial que has seleccionado al subir la conversación. La transcripción se mostrará en un formato de chat, donde podrás ver el diálogo que ha tenido lugar durante la conversación. Este formato hace que la transcripción sea más fácil de leer y comprender, permitiendo al usuario identificar rápidamente lo que se ha dicho en cada momento.
 
-[link demo ver transcripción]
+**Implementación Técnica**
+> Cuándo el usario pulsa sobre el botón de transcripción de una conversación, se hace una llamada al backend indicando de que usuario y qué conversación concreta se quiere la transcripción. Esta transcripción puede ser el resultado de una conversación grabada en tiempo real desde nuestra apliación (que se explica en el punto 10) o bien una conversación que se ha subido a la plataforma en forma de fichero de audio (que se explica en el punto 5). <br> <br>
+> El backend simplemente devuelve lo que tiene almazenado de esta conversación el campo de transcripción (que es un campo json), que es el campo que rellenamos después de haber procesado las conversaciones y formateado en forma de chat (un array de objetos json, dónde cada objeto tiene dos campos: el texto y el hablante). <br> <br>
+
 
 ##### 7. Saber más
 Al lado del botón para ver la transcripción, verás otro botón con el texto "Saber más". Al hacer clic en él, se abrirá una ventana emergente con un campo de texto en el que puedes escribir cualquier pregunta relacionada con la conversación o cualquier detalle que se te haya pasado durante la entrevista. Una vez hayas escrito alguna pregunta, va a aparecer una respuesta en pocos segundos.
@@ -182,14 +194,19 @@ Esta funcionalidad te permite asegurarte de que no se te escapa ningún detalle 
 
 Además, esta funcionalidad es muy versátil y te permite hacer cualquier tipo de pregunta en el momento. Todo lo que tienes que hacer es escribir la pregunta en el campo de texto y presionar "Enter". Así de fácil.
 
-[link demo preguntas efímeras]
+**Implementación Técnica**
+> Cuándo el usuario utiliza la funcionalidad de saber más, se hace una llamada pasando el "*prompt*" o pregunta que el usario quiere saber sobre una determinada conversación. Cuándo el backend lo recibe, recupera la trascripción de la conversación sobre la que se está preguntado, que nos sirve como contexto para poder responder. <br> <br>
+> Luego, con el contexto y la pregunta, se utiliza **ChatGPT** para responderla. Se le pasa toda la transcripción y, además, añadimos un prompt adicional nosotros para mejorar el tipo de respuestas que hace (que han sido resultado de ir haciendo pruebas y refinando). Una vez hemos respondido la pregunta, se devuelve el resultado al frontend, después de haber guardado este en la base de datos, de tal forma que la próxima vez que el usuario entre en la sección de ver más de esta misma conversación, va a ver lo que ya había preguntado anteriormente para que no lo tenga que volver a preguntar.
 
 ##### 8. Reproducir conversación
 Si bien la transcripción es una herramienta útil, en ocasiones puede haber errores o inexactitudes en el texto generado por los modelos de inteligencia artificial. Para evitar esto, nuestra plataforma ofrece la funcionalidad de reproducir la conversación original con el usuario. Cada conversación cuenta con un botón de reproducción en la parte superior derecha. 
 
 Al hacer clic en él, se desplegará un reproductor de audio en la parte inferior central de la pantalla. Desde allí, podrás avanzar o retroceder en la conversación, pausarla y reanudarla sin ningún problema. La gran ventaja de esta funcionalidad es que puedes tener la conversación reproduciéndose mientras realizas otras tareas en la plataforma, como revisar la transcripción o editar la ficha del usuario. De esta manera, tendrás acceso a la fuente original y podrás asegurarte de que la información que manejas es precisa y completa.
 
-[link demo reproductor]
+**Implementación Técnica**
+> Cada vez que registramos una conversación en nuestra plataforma, ya sea grabada en "real time" o sea porque se ha subido un fichero de audio; nosotros nos guardamos el fichero de audio (el que contiene los propios blobs de audio) en **S3**. <br> <br>
+> De esta forma, somos capaces de servir este audio otra vez cuando se solicita. En este caso, cuanod el usuario pulsa el botón de reproducir una conversación, el frontend pide al backend que le devuelva el fichero de audio de esta conversación. El backend, simplemente, recupera el fichero de audio de S3 y se lo devuelve al frontend, que es el que se encarga de reproducirlo. En el frontend, hemos utilizado una librería para hacer el componente, y también lo hemos customizado para que tenga el "*look and feel*" de nuestra plataforma. <br> <br>
+> Además, el frontend también añade controles sobre este reproductor que hacen mejor la interacción con el fichero de audio, como tirar hacia delante y atrás 5 segundos, hacer pausa o descartar la reproducción.
 
 ##### 9. Ficha de usuario
 
