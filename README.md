@@ -114,7 +114,7 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
 
 A continuación, se muestra el diagrama relacional de los modelos de la base de datos utilizados en la plataforma:
 
-![Ejemplo de imagen](HackatonModel.drawio.png)
+![Ejemplo de imagen](img/HackatonModel.drawio.png)
 
 #### 🔧 Funcionalidades
 
@@ -210,12 +210,26 @@ Al hacer clic en él, se desplegará un reproductor de audio en la parte inferio
 > Además, el frontend también añade controles sobre este reproductor que hacen mejor la interacción con el fichero de audio, como tirar hacia delante y atrás 5 segundos, hacer pausa o descartar la reproducción.
 
 ##### 9. Ficha de usuario
+La ficha de usuario es una característica fundamental de nuestra plataforma, ya que permite recopilar y almacenar información valiosa sobre cada usuario. En esencia, se trata de una lista de preguntas predefinidas que se han diseñado para adaptarse a las necesidades específicas de nuestro servicio, basándose en la experiencia previa de la Cruz Roja. A medida que interactúas con un usuario a través de conversaciones en vivo o subiendo conversaciones, la ficha de usuario se actualizará automáticamente con la información relevante. Es importante tener en cuenta que las preguntas que ya hayan sido respondidas no serán sobrescritas, pero siempre tendrás la opción de editarlas manualmente si lo necesitas. La ficha de usuario solo se activará después de que se haya tenido al menos una conversación con el usuario, y se mostrará un icono en la esquina superior derecha del usuario para acceder a ella. En resumen, la ficha de usuario es una herramienta valiosa que te permitirá recopilar y utilizar información útil sobre tus usuarios para mejorar tu experiencia y brindar un mejor servicio.
 
 ##### 10. Grabar conversación
+La funcionalidad de grabar en directo es una de las características más destacadas de nuestra plataforma y ha requerido de un gran esfuerzo y dedicación para conseguir un resultado óptimo. Esta función ofrece a los usuarios la posibilidad de grabar una conversación en tiempo real directamente desde la plataforma, lo que supone una gran ventaja. Durante la conversación, el empleado de Cruz Roja tendrá en su pantalla una lista de preguntas predefinidas que deberá realizar al usuario. A medida que se realicen las preguntas, éstas se marcarán en tiempo real para que el empleado pueda seguir un patrón en la entrevista sin perder la atención en el usuario.
+
+Una vez finalizada la grabación, la conversación se procesará de la misma manera que cuando se sube una conversación ya grabada. En otras palabras, seguirá el mismo flujo que cuando se sube una conversación, lo que permite una gestión y tratamiento uniforme de la información. En resumen, la función de grabación en directo es una herramienta valiosa para mejorar la calidad del servicio y asegurarse de que los empleados de Cruz Roja sigan un patrón de entrevista, sin dejar de prestar atención a las necesidades del usuario.
 
 ##### 11. Buscador
+La funcionalidad del buscador es una herramienta muy útil en nuestra plataforma, ya que nos permite encontrar rápidamente cualquier conversación o usuario de Cruz Roja. Sabemos que la Cruz Roja tiene un gran número de usuarios y consultas, por lo que hemos utilizado la tecnología Opensearch para implementar un buscador genérico en la plataforma.
+
+El buscador se encuentra en la parte superior derecha de la plataforma y, al pulsar el icono de búsqueda, se abrirá una ventana emergente con un campo de entrada que nos permitirá introducir una palabra clave y buscar entre todas las conversaciones de los empleados. Al pulsar una conversación del buscador, seremos redirigidos al usuario correspondiente y la conversación se mostrará en la parte superior de la página. Es importante tener en cuenta que, si refrescamos la página, seguiremos con el método de ordenación normal.
+
+En resumen, la funcionalidad del buscador es una herramienta muy útil y eficaz que nos permite encontrar rápidamente cualquier conversación o usuario en la plataforma de Cruz Roja, lo que nos ayuda a ahorrar tiempo y a mejorar la experiencia del usuario.
 
 ##### 12. Ver notificaciones
+La funcionalidad de las notificaciones nos permite mantener a los usuarios informados en tiempo real sobre el estado de sus conversaciones. Como mencionamos anteriormente, todos los procesos en nuestra plataforma son asíncronos, por lo que es importante notificar al usuario en cuanto la conversación ha sido procesada.
+
+Cuando una conversación es procesada exitosamente, además del mensaje de éxito que se muestra en la pantalla, también aparecerá una notificación en el icono de la campana en la parte superior derecha de la página. Esto permite al usuario ver fácilmente el estado de sus conversaciones y ser notificado en tiempo real cuando una conversación ha sido procesada.
+
+Además, la funcionalidad de las notificaciones también nos permite acceder rápidamente a las conversaciones procesadas. Simplemente pulsando en la notificación correspondiente, seremos redirigidos a la conversación procesada y podremos continuar con nuestro trabajo.
 
 ### Arquitectura Cloud
 
