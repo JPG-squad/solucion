@@ -410,6 +410,10 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 
 ## ⏭️ Local development
 
+Nuestra arquitectura local es una réplica de la que utilizamos en la nube, gracias al uso de Docker y Docker Compose. De esta manera, hemos conseguido una arquitectura portátil para nuestros desarrolladores. Es importante destacar que las credenciales de desarrollo en local solo tienen permisos para leer y escribir en S3, lo cual es suficiente ya que contamos con ficheros de ejemplo de transcripción en S3. Por lo tanto, no es necesario otorgar permisos de transcripción, lo que podría resultar peligroso si las credenciales se perdieran o si un desarrollador cometiera un error y ejecutara muchos trabajos a la vez.
+
+![Arquitectura local](img/localarchitecture.svg)
+
 ## GDPR
 
 En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pero sí podemos dar una visión general de los puntos más importantes y cómo nuestra aplicación cumple con ellos, así como señalar áreas que pueden mejorarse en el futuro.
