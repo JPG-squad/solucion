@@ -412,6 +412,24 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 
 ## GDPR
 
+Claro, aquí te dejo una redacción que cubre los puntos que mencionaste:
+
+En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pero sí podemos dar una visión general de los puntos más importantes y cómo nuestra aplicación cumple con ellos, así como señalar áreas que pueden mejorarse en el futuro.
+
+1. Obtener el consentimiento del usuario: Es importante que el empleado de la Cruz Roja explique cómo se procesarán los datos del usuario y obtenga su consentimiento antes de recopilar cualquier información o grabar conversaciones. Nuestra aplicación también debería permitir que los usuarios retiren su consentimiento en cualquier momento.
+
+2. Minimizar la recopilación de datos: Es crucial definir qué información necesitamos de los usuarios y minimizar la cantidad de datos personales que se recopilan.
+
+3. Garantizar la seguridad de los datos: Nuestra aplicación utiliza medidas de seguridad para proteger la información personal de los usuarios, como el cifrado de datos y la autenticación de usuarios autorizados.
+
+4. Garantizar el acceso y la portabilidad de los datos: Actualmente, solo los empleados de la Cruz Roja tienen acceso a los datos, pero se debería implementar un sistema para que los usuarios puedan acceder y ver sus propios datos. También se podría facilitar la transferencia de datos de un usuario a otro.
+
+5. Proporcionar una forma fácil de eliminar los datos: Si bien actualmente no existe esta funcionalidad, se podría implementar en el futuro.
+
+6. Proporcionar una política de privacidad clara y fácil de entender: Es esencial que nuestra aplicación cuente con una política de privacidad que explique claramente cómo se recopila, utiliza y comparte la información personal del usuario.
+
+7. Proporcionar información clara sobre cómo se utiliza la información recopilada: Aunque en esta documentación se ha explicado cómo se utiliza la información, es importante que esta información esté resumida y sea fácilmente accesible para los usuarios de la aplicación.
+
 ## ⏭️ Demo
 
 ## 👥 Team Members
