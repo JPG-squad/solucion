@@ -279,6 +279,8 @@ Utilizamos Amazon S3 para varias tareas en nuestra aplicación. En primer lugar,
 
 También aplicamos políticas de ciclo de vida de S3 en el bucket de audios. Con estas políticas, podemos automatizar la transición de los objetos a diferentes clases de almacenamiento, como a clase de acceso menos frecuente (S3 Standard-Infrequent Access) o almacenamiento en frío (S3 Glacier), después de un cierto período de tiempo. 
 
+![Ciclo de vida bucket backend](img/backend_lifecycle.png)
+
 Ficheros de terraform:
 - [Carpeta de configuración de S3](https://github.com/JPG-squad/terraform/tree/main/services/s3)
 
