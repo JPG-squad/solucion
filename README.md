@@ -267,7 +267,7 @@ Ficheros de terraform:
 
 ##### IAM
 
-Diagrama
+![Arquitectura local](img/IAM.svg)
 
 Ficheros de terraform:
 - [Carpeta principal de configuración IAM](https://github.com/JPG-squad/terraform/tree/main/global/iam)
@@ -293,7 +293,8 @@ Ficheros de terraform:
 
 Utilizamos Amazon CloudWatch para monitorear nuestros servicios en la nube y obtener información sobre el rendimiento de nuestra aplicación. Con CloudWatch, podemos configurar alarmas y reaccionar automáticamente a los cambios en nuestros recursos. Actualmente enviamos estas alarmas a un canal de Slack, utilitzando SNS a traves del email del canal.
 
-Tenemos el siguiente dashboard con las métricas más importantes de nuestra aplicación:
+Tenemos el siguiente dashboard con las métricas más importantes de nuestra aplicación, en la [siguiente carpeta dentro de este repostorio](monitor/) tenemos 3 images de como se ve el dashboard.
+
 
 TODO PONER FOTOS
 
