@@ -428,7 +428,7 @@ Hemos realizado una prueba de verificación para comprobar que podemos recuperar
 
 Adjunto se encuentra el enlace al video de la prueba de desastre:
 
-<a href="https://youtu.be/Jw4I-6NhjU4">DRP Tests - Portal de conversaciones - AWS Hackathon for good 2023</a>
+<a href="https://youtu.be/Jw4I-6NhjU4">DRP Test - Portal de conversaciones - AWS Hackathon for good 2023</a>
 
 
 ##### MTTR ( Mean Time To Recover )
@@ -439,9 +439,9 @@ Nuestra media de tiempo de recuperación hasta el momento es de 15 minutos. Es i
 
 ##### Excelencia operativa
 
-1. Realizar operaciones como código: Utilizamos Terraform para desplegar nuestra infraestructura como código. Esto nos permite tener una infraestructura versionada y repetible. El repositorio se encuentra [aquí] (https://github.com/JPG-squad/terraform)
+1. Realizar operaciones como código: Utilizamos Terraform para desplegar nuestra infraestructura como código. Esto nos permite tener una infraestructura versionada y repetible. El repositorio se encuentra [aquí](https://github.com/JPG-squad/terraform)
 2. Realizar cambios frecuentes, pequeños y reversibles: Hemos establecido un proceso para desplegar cambios en pequeñas incrementos que se pueden revertir rápidamente si surgen problemas, de esta manera podemos identificar fácilmente la causa raíz de cualquier problema y minimizar el tiempo y los recursos necesarios para solucionarlos.
-3. Anticiparse al fallo: Hemos estado haciendo pruebas DRP para asegurarnos de que podemos recuperarnos de cualquier fallo. También hemos implementado alarmas y notificaciones para estar al tanto de cualquier problema que pueda surgir. En el siguiente código de Terraform (https://github.com/JPG-squad/terraform/blob/main/global/monitor/alarms.tf) se puede ver cómo hemos implementado las alarmas y también aquí se puede ver un vídeo con la última prueba DRP que realizamos.
+3. Anticiparse al fallo: Hemos estado haciendo pruebas DRP para asegurarnos de que podemos recuperarnos de cualquier fallo. También hemos implementado alarmas y notificaciones para estar al tanto de cualquier problema que pueda surgir. En el siguiente código de Terraform (https://github.com/JPG-squad/terraform/blob/main/global/monitor/alarms.tf) se puede ver cómo hemos implementado las alarmas y también [aquí](https://youtu.be/Jw4I-6NhjU4) se puede ver un vídeo con la última prueba DRP que realizamos.
 
 ##### Seguridad
 
@@ -454,7 +454,7 @@ Nuestra media de tiempo de recuperación hasta el momento es de 15 minutos. Es i
 ##### Fiabilidad
 
 1. **Recuperación automática ante fallos, escalar horizontalmente para aumentar la disponibilidad de carga de trabajo agregada y dejar de adivinar la capacidad**: Para garantizar una alta disponibilidad y resiliencia, utilizamos AWS Auto Scaling para ajustar la capacidad, AWS Load Balancing para distribuir el tráfico y AWS RDS Aurora para una base de datos altamente disponible. Además, el servicio Opensearch se implementa en dos zonas de disponibilidad para obtener redundancia y tolerancia a fallos adicionales. Nuestros servicios se implementan en dos zonas de disponibilidad para obtener redundancia y tolerancia a fallos adicionales. También contamos con un plan DRP para recuperarnos de cualquier fallo.
-2. **Probar los procedimientos de recuperación**: Hemos estado haciendo pruebas DRP para asegurarnos de que podemos recuperarnos de cualquier fallo. [Aquí]() se puede ver un vídeo con la última prueba DRP que realizamos.
+2. **Probar los procedimientos de recuperación**: Hemos estado haciendo pruebas DRP para asegurarnos de que podemos recuperarnos de cualquier fallo. [Aquí](https://youtu.be/Jw4I-6NhjU4) se puede ver un vídeo con la última prueba DRP que realizamos.
 3. **Gestionar el cambio en la automatización**: Utilizamos Terraform para desplegar nuestra infraestructura como código. Esto nos permite tener una infraestructura versionada y repetible. El repositorio se encuentra [[aquí](https://github.com/JPG-squad/terraform). Sin embargo, actualmente Terraform no se aplica automáticamente, pero esto se puede hacer en el futuro si el equipo crece.
 
 ##### Eficiencia del rendimiento
@@ -484,6 +484,15 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 ![CI/CD](img/CI_CD.svg)
 
 #### Costes
+
+
+En la sección de costes, se utilizó la herramienta AWS Calculator para generar dos informes de los costes aproximados de nuestra infraestructura. Se realizó un cálculo para la infraestructura que está corriendo en el (siguiente enlace del PDF)[files/dev_calc.pdf], y otro para la infraestructura que usaríamos en producción, que se puede encontrar en (este enlace del PDF)[files/prod_calc.pdf].
+
+En ambos informes, se incluyeron los costes fijos y algunas aproximaciones de uso, como el número de trabajos ejecutados de Transcribe. Es importante tener en cuenta que estos costes son solo una estimación y pueden variar en función del uso real de la infraestructura. Por lo tanto, se recomienda revisar los informes periódicamente y ajustarlos según sea necesario para mantener los costes dentro del presupuesto establecido.
+
+Además, es importante destacar que hasta el momento solo hemos gastado 24 euros gracias al uso del free tier que ofrece Amazon en diferentes servicios y a la optimización de costes y sostenibilidad en nuestra infraestructura. Esto se debe a que hemos utilizado solo lo que necesitábamos y no hemos sobredimensionado la infraestructura, siguiendo así el pilar de optimización de costes y sostenibilidad en nuestra estrategia de gestión de infraestructura en la nube.
+
+![Costes actuales](img/currentcosts.png)
 
 ## ⏭️ Local development
 
