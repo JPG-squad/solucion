@@ -428,7 +428,8 @@ Hemos realizado una prueba de verificación para comprobar que podemos recuperar
 
 Adjunto se encuentra el enlace al video de la prueba de desastre:
 
-[Enlace al video](insertar aquí el enlace al video)
+<a href="https://youtu.be/Jw4I-6NhjU4">DRP Tests - Portal de conversaciones - AWS Hackathon for good 2023</a>
+
 
 ##### MTTR ( Mean Time To Recover )
 
