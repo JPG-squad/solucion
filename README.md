@@ -260,7 +260,9 @@ Además, la funcionalidad de las notificaciones también nos permite acceder rá
 
 #### Descripción
 
-Link video
+Para ofrecer una descripción más detallada de nuestra arquitectura, hemos creado un video en el que explicamos de manera concisa cómo funciona y para qué utilizamos cada uno de nuestros servicios. Puedes ver el video en el siguiente enlace:
+
+[Descripción general de la arquitectura - Hackathon for good AWS 2023](https://youtu.be/p8LAQeTAORc)
 
 #### Repositorios
 
