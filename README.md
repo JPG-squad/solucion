@@ -239,12 +239,22 @@ El buscador se encuentra en la parte superior derecha de la plataforma y, al pul
 
 En resumen, la funcionalidad del buscador es una herramienta muy útil y eficaz que nos permite encontrar rápidamente cualquier conversación o usuario en la plataforma de Cruz Roja, lo que nos ayuda a ahorrar tiempo y a mejorar la experiencia del usuario.
 
+**Implementación Técnica**
+> Para poder tener búsquedas eficientes y rápidas en nuestra plataforma, hemos utilizado el motor de búsqueda AWS OpenSearch. Incluimos esta tecnología porque sabíamos que dispondríamos de muchísmios datos (de texto) dado que vamos a transcribir cada conversación que se haga en la plataforma. Por eso, hemos utilizado AWS OpenSearch para poder indexar todos los datos de texto que tenemos en nuestra base de datos, y poder hacer búsquedas eficientes y rápidas. <br> <br>
+> Para indexar todas las conversaciones, tenemos un **Django Command** que indexa todas las conversaciones que tenemos en la base de datos. Este comando nos permite que no tengamos que guardar y hacer backups tan estrictamente, ya que se pueden "reconstruir" todos a partir de la información que tenemos en la base de datos. Este comando es útil para crear des de 0 los datos de OpenSearch. No obstante, para tener una indexación contínua, lo que hemos hecho es que cada vez que se crea una conversación en nuestra plataforma, la indexamos automáticamente en OpenSearch. <br> <br>
+> Por último, el backend expone un endpoint de búsqueda de texto libre al frontend, para que se pueda buscar lo que se introduce en el buscador. El backend hacer de **proxy** para poder interactuar con el OpenSearch, ya que éste no es público. El backend devuelve los resultados que de el OpenSearch, y también marca con *tags* el **highlighting** del término que ha encontrado. El frontend, cuando lo recibe, lo muestra de una manera fácil al usuario, y resaltado en negrita el término que ha buscado (que ya le viene marcado por el backend).
+
 ##### 12. Ver notificaciones
 La funcionalidad de las notificaciones nos permite mantener a los usuarios informados en tiempo real sobre el estado de sus conversaciones. Como mencionamos anteriormente, todos los procesos en nuestra plataforma son asíncronos, por lo que es importante notificar al usuario en cuanto la conversación ha sido procesada.
 
 Cuando una conversación es procesada exitosamente, además del mensaje de éxito que se muestra en la pantalla, también aparecerá una notificación en el icono de la campana en la parte superior derecha de la página. Esto permite al usuario ver fácilmente el estado de sus conversaciones y ser notificado en tiempo real cuando una conversación ha sido procesada.
 
 Además, la funcionalidad de las notificaciones también nos permite acceder rápidamente a las conversaciones procesadas. Simplemente pulsando en la notificación correspondiente, seremos redirigidos a la conversación procesada y podremos continuar con nuestro trabajo.
+
+**Implementación Técnica**
+> Para poder tener estas notificaciones, lo hemos hecho básicamente des de la parte del frontend. Éste es el que va enviando las peticiones y, como nuestra aplicación es asíncrona, el usuario puede hacer otras cosas mientras se procesan. <br> <br>
+> Una vez el frontend recibe el resultado del backend, lo que hace es mostrar una model de que se ha completado y se añade una notificación en la campana (usando el **local storage** para guardar este estado). Cuándo el usuario pulsa sobre la notificación, el frontend es capaz de redirigirlo al sitio correspondiente dentro de la plataforma de dónde esta notificación hace referencia. <br> <br>
+> Una vez ya se ha visto una notificación, esta se elimina del apartado de notificaciones y del local storage.
 
 ### Arquitectura Cloud
 
