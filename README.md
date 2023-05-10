@@ -71,9 +71,9 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [Sostenibilidad](#sostenibilidad)
       - [CI/CD](#cicd)
       - [Costes](#costes)
-  - [Local development](#️-local-development)
+  - [⏭️ Local development](#️-local-development)
   - [GDPR](#gdpr)
-  - [🎥 Demo](#️-demo)
+  - [⏭️ Demo](#️-demo)
   - [👥 Team Members](#-team-members)
   - [⏭️ Trabajo futuro](#️-trabajo-futuro)
   - [🎉 Conclusión](#-conclusión)
@@ -572,6 +572,6 @@ Además, podemos pensar en nuevas funcionalidades y mejorar las existentes. En c
 
 Estamos extremadamente orgullosos del trabajo que hemos realizado en esta hackathon y hemos aprendido muchísimo durante estos días. Hemos trabajado en equipo como nunca antes y hemos sido capaces de tomar decisiones y ponerlas en práctica de manera eficiente.
 
-Hemos aprendido varias lecciones importantes que nos gustaría destacar. En primer lugar, la importancia de ser ágil y capaz de pivotar, es decir, cambiar de rumbo cuando las cosas no van como se esperaba. Durante la hackathon, nos enfrentamos a muchos desafíos y complicaciones que tuvimos que superar y en algunos casos, reconocimos que el camino que estábamos siguiendo no era el adecuado. Aprendimos que lo importante es no perder tiempo y pivotar rápidamente hacia una nueva dirección. El lema que adoptamos para la hackathon fue "El arte de pivotar". También aprendimos mucho sobre el manejo de archivos y, por supuesto, sobre inteligencia artificial.
+Hemos aprendido varias lecciones importantes que nos gustaría destacar. En primer lugar, la importancia de ser ágil y capaz de pivotar, es decir, cambiar de rumbo cuando las cosas no van como se esperaba. Durante la hackathon, nos enfrentamos a muchos desafíos y complicaciones que tuvimos que superar y en algunos casos, reconocimos que el camino que estábamos siguiendo no era el adecuado. Aprendimos que lo importante es no perder tiempo y pivotar rápidamente hacia una nueva dirección. El lema que adoptamos para la hackathon fue "El arte de pivotar". También aprendimos mucho sobre el manejo de archivos, de web sockets y, por supuesto, sobre inteligencia artificial.
 
 En general, podemos decir que esta ha sido una experiencia muy enriquecedora que nos ha unido aún más como amigos y como equipo de trabajo. Hemos logrado consolidar un producto innovador que resuelve el problema planteado en muy pocos días. Estamos realmente satisfechos con lo que hemos logrado y esperamos seguir mejorando en el futuro.
