@@ -486,7 +486,7 @@ Además de los puntos comúnmente explicados en el pilar de Optimización de cos
 #### Costes
 
 
-En la sección de costes, se utilizó la herramienta AWS Calculator para generar dos informes de los costes aproximados de nuestra infraestructura. Se realizó un cálculo para la infraestructura que está corriendo en el (siguiente enlace del PDF)[files/dev_calc.pdf], y otro para la infraestructura que usaríamos en producción, que se puede encontrar en (este enlace del PDF)[files/prod_calc.pdf].
+En la sección de costes, se utilizó la herramienta AWS Calculator para generar dos informes de los costes aproximados de nuestra infraestructura. Se realizó un cálculo para la infraestructura que está corriendo en el [siguiente enlace del PDF](files/dev_calc.pdf), y otro para la infraestructura que usaríamos en producción, que se puede encontrar en [este enlace del PDF](files/prod_calc.pdf).
 
 En ambos informes, se incluyeron los costes fijos y algunas aproximaciones de uso, como el número de trabajos ejecutados de Transcribe. Es importante tener en cuenta que estos costes son solo una estimación y pueden variar en función del uso real de la infraestructura. Por lo tanto, se recomienda revisar los informes periódicamente y ajustarlos según sea necesario para mantener los costes dentro del presupuesto establecido.
 
