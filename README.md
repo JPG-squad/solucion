@@ -364,7 +364,6 @@ Utilizamos ACM para crear certificados SSL/TLS para dos dominios distintos. El p
 
 Ficheros de terraform:
 - [Carpeta de configuración de ACM](https://github.com/JPG-squad/terraform/tree/main/services/acm)
-- 
 ##### Route53
 
 AWS Route53 es un servicio de DNS administrado que utilizamos para crear y administrar los dominios necesarios para nuestra aplicación. Además, también utilizamos Route53 para crear health checks con failover en cada una de nuestras regiones. Estos health checks se utilizan para monitorear el estado de nuestro backend en cada región y asegurarnos de que está disponible y respondiendo correctamente. Si se detecta un problema en una región, Route53 puede redirigir automáticamente el tráfico a otra región que esté disponible y funcione correctamente.
