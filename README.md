@@ -525,9 +525,41 @@ En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pe
 7. Proporcionar información clara sobre cómo se utiliza la información recopilada: Aunque en esta documentación se ha explicado cómo se utiliza la información, es importante que esta información esté resumida y sea fácilmente accesible para los usuarios de la aplicación.
 
 ## ⏭️ Demo
+Aquí puedes encontrar el enlace al video de la demo, donde se comenta la plataforma a nivel general y sin detalles técnicos.
+https://youtu.be/SYNQbkOoeDI
 
 ## 👥 Team Members
+Nos conocimos en el trabajo, los tres trabajábamos en la misma empresa y pensamos que éramos la combinación perfecta para presentarnos a esta Hackathon. Nos llevamos de maravilla tanto en lo profesional como en lo personal.
 
+Te presentamos a nuestro equipo:
+
+**Joan Plaja**: Graduado en ingeniería informática y DevOps Engineer certificado por AWS Solutions Architect. 
+
+Puedes encontrar su perfil de LinkedIn en este enlace: https://www.linkedin.com/in/joan-josep-plaja/
+
+**Pau Vilella**: Graduado en ingeniería informática y DevOps Lead certificado por AWS Solutions Architect. 
+
+Aquí tienes el enlace a su perfil de LinkedIn: https://www.linkedin.com/in/pau-vilella-stub-961b941b9/
+
+**Gerard Lozano**: Estudiante de último curso de ingeniería informática y Software Engineer. 
+
+Puedes visitar su perfil de LinkedIn en este enlace: https://www.linkedin.com/in/gerardlozanotrias/
+
+Esperamos que disfrutes de nuestro proyecto tanto como nosotros disfrutamos trabajando juntos en él.
 ## ⏭️ Trabajo futuro
 
+Se nos ocurren muchas ideas para el futuro de este proyecto. Una de ellas es explorar maneras de reducir los costos al utilizar la API del ChatGPT. En nuestro proyecto, la grabación en directo requiere muchas peticiones a la API de OpenAI, por lo que deberíamos investigar formas de reducir el número de peticiones y, por ende, los costos asociados.
+
+Uno de los temas que más hemos investigado y perfeccionado es la diarización del audio, es decir, la separación de las voces de los conversantes. Es un problema común que hemos encontrado en la comunidad, y sin el uso de GPU, se convierte en una tarea costosa. Por lo tanto, debemos seguir trabajando en ello para mejorar la precisión y reducir el costo computacional.
+
+Aunque hemos trabajado rápidamente para desarrollar un producto sólido en 15 días, todavía hay margen de mejora en el código tanto del backend como del frontend. Podemos seguir buenas prácticas de programación para optimizar el rendimiento y la eficiencia.
+
+Además, podemos pensar en nuevas funcionalidades y mejorar las existentes. En cuanto a la arquitectura, debemos tomarnos el tiempo necesario para revisar la seguridad de toda la aplicación y asegurarnos de cumplir todos los requisitos del well architecture framework. De esta manera, podemos garantizar un producto seguro y escalable.
+
 ## 🎉 Conclusión
+
+Estamos extremadamente orgullosos del trabajo que hemos realizado en esta hackathon y hemos aprendido muchísimo durante estos días. Hemos trabajado en equipo como nunca antes y hemos sido capaces de tomar decisiones y ponerlas en práctica de manera eficiente.
+
+Hemos aprendido varias lecciones importantes que nos gustaría destacar. En primer lugar, la importancia de ser ágil y capaz de pivotar, es decir, cambiar de rumbo cuando las cosas no van como se esperaba. Durante la hackathon, nos enfrentamos a muchos desafíos y complicaciones que tuvimos que superar y en algunos casos, reconocimos que el camino que estábamos siguiendo no era el adecuado. Aprendimos que lo importante es no perder tiempo y pivotar rápidamente hacia una nueva dirección. El lema que adoptamos para la hackathon fue "El arte de pivotar". También aprendimos mucho sobre el manejo de archivos y, por supuesto, sobre inteligencia artificial.
+
+En general, podemos decir que esta ha sido una experiencia muy enriquecedora que nos ha unido aún más como amigos y como equipo de trabajo. Hemos logrado consolidar un producto innovador que resuelve el problema planteado en muy pocos días. Estamos realmente satisfechos con lo que hemos logrado y esperamos seguir mejorando en el futuro.
