@@ -71,9 +71,9 @@ El "Portal de conversaciones" es una solución innovadora ya que puede procesar 
         - [Sostenibilidad](#sostenibilidad)
       - [CI/CD](#cicd)
       - [Costes](#costes)
-  - [⏭️ Local development](#️-local-development)
+  - [Local development](#️-local-development)
   - [GDPR](#gdpr)
-  - [⏭️ Demo](#️-demo)
+  - [🎥 Demo](#️-demo)
   - [👥 Team Members](#-team-members)
   - [⏭️ Trabajo futuro](#️-trabajo-futuro)
   - [🎉 Conclusión](#-conclusión)
@@ -526,6 +526,9 @@ En una hacktoon, no podemos abordar todos los aspectos de la GDPR en detalle, pe
 ## ⏭️ Demo
 Aquí puedes encontrar el enlace al video de la demo, donde se comenta la plataforma a nivel general y sin detalles técnicos.
 https://youtu.be/SYNQbkOoeDI
+
+Podeís encontrar tambien aquí la presentación que emos usado en la demo:
+[Presentación](./files/JPG%20-%20PWP%20Presentacio%CC%81n.pdf)
 
 ## 👥 Team Members
 Nos conocimos en el trabajo, los tres trabajábamos en la misma empresa y pensamos que éramos la combinación perfecta para presentarnos a esta Hackathon. Nos llevamos de maravilla tanto en lo profesional como en lo personal.
