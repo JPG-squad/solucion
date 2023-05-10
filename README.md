@@ -298,6 +298,12 @@ Ficheros de terraform:
 
 ##### IAM
 
+El contenedor de backend asume un rol que tiene permisos específicos para leer y escribir en el bucket de backend de AWS, así como para ejecutar trabajos de transcripción y visualizar los resultados correspondientes.
+
+Además, para el desarrollo local, contamos con unas credenciales compartidas que tienen acceso a un bucket de S3 de desarrollo que no contiene datos sensibles. Estas credenciales solo nos permiten trabajar con videos y resultados de prueba generados por Transcribe, pero no nos dan acceso directo a la herramienta de transcripción. Por seguridad, rotamos estas credenciales cada 3 meses como política estándar.
+
+Finalmente, para el uso de Terraform, utilizamos aws-vault, lo que nos permite asumir un rol temporal de una hora gracias al servicio de Security Token Service (STS). Estas credenciales efímeras se ejecutan en una subshell que se encarga de ejecutar Terraform, lo que garantiza que el acceso a los recursos de AWS se maneje de manera segura y controlada.
+
 ![Arquitectura local](img/IAM.svg)
 
 Ficheros de terraform:
