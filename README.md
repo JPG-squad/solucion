@@ -1,3 +1,21 @@
+<style>
+  h1 {
+    font-size: 3.5em;
+  }
+  h2 {
+    font-size: 3em;
+  }
+  h3 {
+    font-size: 2.5em;
+  }
+  h4 {
+    font-size: 2em;
+  }
+  h5 {
+    font-size: 1.5em;
+  }
+</style>
+
 # Portal de conversaciones
 
 👋 ¡Bienvenidos a nuestro proyecto! 
